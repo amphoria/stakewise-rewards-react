@@ -5,6 +5,7 @@ import { StakeWiseSDK, Network } from '@stakewise/v3-sdk';
 import * as XLSX from 'xlsx';
 
 export default function App() {
+
   // Constants
   const genesisVaultAddress = '0xAC0F906E433d58FA868F936E8A43230473652885';
 
@@ -62,8 +63,8 @@ export default function App() {
     // Instantiate SDK for selected network
     const endpoints = {
       web3: network === 'Ethereum'
-        ? 'https://eth-mainnet.g.alchemy.com/v2/JTXUw4DQJ0PEVskCBSsadhBnk3rkd4vN'
-        : 'https://gnosis-mainnet.g.alchemy.com/v2/JTXUw4DQJ0PEVskCBSsadhBnk3rkd4vN'
+        ? `https://eth-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
+        : `https://gnosis-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`
     };
     const sdkInstance = new StakeWiseSDK({ network: network === 'Ethereum' ? Network.Mainnet : Network.Gnosis, endpoints });
     setSdk(sdkInstance);
